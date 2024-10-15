@@ -4,9 +4,10 @@ import AuthForm from '../components/auth/AuthForm';
 import { login, signup } from "../data/auth.server";
 import { validateCredentials } from "../data/validation.server";
 import styles from '../styles/auth.css';
-const auth:React.FC=()=> {
-
- 
+import { useLoaderData } from "@remix-run/react";
+const Auth:React.FC=()=> {
+const user=useLoaderData()
+console.log("user inside marketingauthpage",user);
   return (
     <div>
      <AuthForm/>
@@ -22,11 +23,11 @@ export const links: LinksFunction = () => [
   export const action: ActionFunction = async ({ request }) => {
   const searchparams=new URL(request.url).searchParams
   const authmode=searchparams.get('mode')||'login'
-      console.log("inside auth action")
+    console.log("inside auth action")
     const formData = await request.formData();
     const authData = Object.fromEntries(formData) as {
-     email:string,
-     password:string
+    email:string,
+    password:string
     };
     console.log("Auth Data:", authData);
     try{
@@ -48,4 +49,4 @@ export const links: LinksFunction = () => [
       }
     }
   };
-export default auth
+export default Auth

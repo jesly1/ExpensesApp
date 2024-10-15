@@ -1,7 +1,8 @@
-import { Link } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 import { FaArrowRight, FaChartBar, FaDollarSign } from "react-icons/fa";
-export default function index() {
-
+export default function Index() {
+  const user=useLoaderData()
+  console.log("user inside marketingindex",user);
   return (
     <main>
       <section className="marketing-section">

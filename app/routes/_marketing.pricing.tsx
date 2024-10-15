@@ -1,7 +1,6 @@
 import { FaHandshake, FaTrophy } from 'react-icons/fa';
 
 import PricingPlan from '../components/marketing/PricingPlan';
-
 const PRICING_PLANS = [
   {
     id: 'p1',
@@ -18,7 +17,6 @@ const PRICING_PLANS = [
     icon: FaTrophy
   },
 ];
-
 export default function pricing() {
   return (
     <main id="pricing">
@@ -38,5 +36,4 @@ export default function pricing() {
     </main>
   );
 }
-
 export function meta() {}

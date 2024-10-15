@@ -19,15 +19,15 @@ const ExpenseAnalysis: React.FC = () => {
     </div>
   );
 };
+
+//can use usematches also
 export async function loader({ request }: LoaderFunctionArgs) {
-const userid = await requireUserSession(request);
+  const userid = await requireUserSession(request);
   console.log("insideeee loaderrrrr");
   const data = await getExpenses(userid);
-  
   if (!data) {
     throw new Response("Expense not found", { status: 404 });
   }
-
   return data;
 }
 export default ExpenseAnalysis;

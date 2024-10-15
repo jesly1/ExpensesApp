@@ -6,9 +6,8 @@ import {
   Scripts,
   ScrollRestoration
 } from "@remix-run/react";
-import styles from "./styles/shared.css";
+import styles from "./styles/shared.css?url";
 import "./tailwind.css";
-
 
 // Define global links (CSS files, etc.)
 export const links: LinksFunction = () => [

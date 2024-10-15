@@ -1,21 +1,25 @@
 import React from "react";
 import ExpenseForm from "../components/expenses/ExpenseForm";
 import Modal from "../components/util/Modal";
-import { redirect, useNavigate,  } from "@remix-run/react";
+import { redirect, useLoaderData, useNavigate,  } from "@remix-run/react";
 import { Deleteexpenses, getExpensebyId, Updateexpenses } from "../data/expenses.server";
 import { validateExpenseInput } from "../data/validation.server";
 
 // Type for expense data (you can refine this based on your actual data)
 
-
+interface Expense {
+  id: string;
+  title: string;
+  amount: number;
+  date: string;
+}
 const ViewExpenses: React.FC = () => {
   const navigate = useNavigate();
-  // const expense = useLoaderData<Expense>(); // Use the loader data
-
+  const expense = useLoaderData<Expense>();
+  console.log("expense inside child route is",expense);
   function closehandler() {
     navigate("..");
   }
-
   return (
     <div>
       <Modal onClose={closehandler}>
@@ -45,14 +49,12 @@ export async function action({ params, request }: { params: { id: string }; requ
   // Get the method (POST is the actual method, so we need to check for _method)
   const method = formData.get('_method')?.toString() || request.method.toUpperCase();
   console.log(method, "method");
-
   if (method === 'patch') {
     const expenseData = Object.fromEntries(formData) as {
       title: string;
       amount: string;
       date: string;
     };
-
     try {
       validateExpenseInput(expenseData); // Validation logic
     } catch (error) {

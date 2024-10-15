@@ -51,9 +51,9 @@ export const links: LinksFunction = () => [
     href: styles,
   },
 ];
-export const loader:LoaderFunction = async ({ request }) => {
+export const loader: LoaderFunction = async ({ request }) => {
   const userid = await requireUserSession(request);
-  const expenses =await getExpenses(userid);
+  const expenses = await getExpenses(userid);
   return expenses;
 };
 export default ExpensesLayout;
